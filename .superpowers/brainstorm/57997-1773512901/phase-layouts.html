@@ -1,0 +1,173 @@
+<h2>Pi Day App — Three Phase Mockups</h2>
+<p class="subtitle">Visual reference for the three phases of the app. Does this overall layout and feel match your vision?</p>
+
+<style>
+  .phases { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 24px; }
+  .phase-mock {
+    flex: 1; min-width: 240px; border-radius: 12px; overflow: hidden;
+    background: #0a0a1a; border: 1px solid rgba(255,255,255,0.1);
+    font-family: 'Segoe UI', sans-serif;
+  }
+  .phase-label {
+    padding: 8px 16px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+    font-weight: 700; background: rgba(255,255,255,0.05); color: #8892b0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .phase-body { padding: 24px 16px; min-height: 300px; position: relative; overflow: hidden; }
+
+  /* Phase 1 */
+  .pi-hero {
+    text-align: center; font-size: 72px; font-weight: 900;
+    background: linear-gradient(135deg, #00d4ff, #b24bff, #ff2d95);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(0,212,255,0.5));
+    animation: pulse 2s ease-in-out infinite;
+    line-height: 1;
+  }
+  @keyframes pulse {
+    0%, 100% { filter: drop-shadow(0 0 15px rgba(0,212,255,0.5)); }
+    50% { filter: drop-shadow(0 0 35px rgba(178,75,255,0.8)); }
+  }
+  .headline { text-align: center; color: #fff; font-size: 15px; font-weight: 700; margin: 12px 0 6px; }
+  .subhead { text-align: center; color: #8892b0; font-size: 11px; margin: 0 0 16px; line-height: 1.4; }
+  .date-input {
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(0,212,255,0.4);
+    border-radius: 8px; padding: 10px 14px; color: #aaa; font-size: 12px;
+    width: 100%; box-sizing: border-box; margin-bottom: 10px;
+  }
+  .cta-btn {
+    width: 100%; padding: 10px; border-radius: 24px; border: none;
+    background: linear-gradient(135deg, #00d4ff, #b24bff);
+    color: #fff; font-weight: 700; font-size: 13px; cursor: pointer;
+    box-shadow: 0 0 20px rgba(0,212,255,0.3);
+  }
+  .float-digit {
+    position: absolute; font-size: 14px; color: rgba(255,255,255,0.06);
+    font-family: monospace; pointer-events: none;
+  }
+
+  /* Phase 2 */
+  .digit-rows { margin-bottom: 12px; }
+  .digit-row {
+    font-family: 'Courier New', monospace; font-size: 11px; letter-spacing: 2px;
+    white-space: nowrap; overflow: hidden; padding: 2px 0;
+    color: rgba(255,255,255,0.25); line-height: 1.4;
+  }
+  .digit-row .highlighted { color: #39ff14; text-shadow: 0 0 8px #39ff14; }
+  .scan-cursor {
+    position: absolute; top: 0; bottom: 60px; width: 2px;
+    background: cyan; box-shadow: 0 0 12px cyan, 0 0 24px rgba(0,255,255,0.4);
+    left: 55%;
+  }
+  .progress-bar-wrap { position: absolute; bottom: 32px; left: 16px; right: 16px; }
+  .progress-label { color: #8892b0; font-size: 9px; margin-bottom: 4px; }
+  .progress-bar { height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; }
+  .progress-fill { height: 100%; width: 62%; background: linear-gradient(90deg, #00d4ff, #b24bff); border-radius: 2px; }
+  .trivia-bar {
+    position: absolute; bottom: 0; left: 0; right: 0; height: 28px;
+    background: rgba(10,10,26,0.9); border-top: 1px solid rgba(0,212,255,0.3);
+    display: flex; align-items: center; padding: 0 10px; gap: 6px;
+  }
+  .trivia-pi { color: #00d4ff; font-size: 11px; font-weight: 700; }
+  .trivia-text { color: #8892b0; font-size: 9px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* Phase 3 */
+  .result-header { text-align: center; margin-bottom: 12px; }
+  .result-pos { color: #fff; font-size: 13px; font-weight: 700; }
+  .result-pos span { color: #ffd700; font-size: 18px; }
+  .digit-strip {
+    background: rgba(255,255,255,0.04); border-radius: 6px; padding: 8px;
+    font-family: monospace; font-size: 10px; letter-spacing: 1px;
+    color: rgba(255,255,255,0.3); text-align: center; margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .digit-strip .match { color: #ffd700; text-shadow: 0 0 8px #ffd700; font-size: 13px; }
+  .badge {
+    display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 9px;
+    background: rgba(255,215,0,0.15); border: 1px solid rgba(255,215,0,0.4);
+    color: #ffd700; margin-bottom: 10px;
+  }
+  .glass-card {
+    background: rgba(255,255,255,0.05); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 14px;
+  }
+  .share-btn {
+    width: 100%; padding: 8px; border-radius: 20px; border: none;
+    background: linear-gradient(135deg, #ffd700, #ff8c00);
+    color: #000; font-weight: 700; font-size: 11px; cursor: pointer; margin-bottom: 6px;
+  }
+  .try-btn {
+    width: 100%; padding: 8px; border-radius: 20px;
+    border: 1px solid rgba(0,212,255,0.4); background: transparent;
+    color: #00d4ff; font-size: 11px; cursor: pointer;
+  }
+  .fun-fact { color: #8892b0; font-size: 9px; text-align: center; margin-bottom: 10px; line-height: 1.4; }
+</style>
+
+<div class="phases">
+
+  <!-- Phase 1 -->
+  <div class="phase-mock">
+    <div class="phase-label">Phase 1 — Birthday Input</div>
+    <div class="phase-body">
+      <span class="float-digit" style="top:10%;left:8%">3</span>
+      <span class="float-digit" style="top:25%;left:85%">1</span>
+      <span class="float-digit" style="top:60%;left:12%">4</span>
+      <span class="float-digit" style="top:75%;left:78%">1</span>
+      <span class="float-digit" style="top:45%;left:65%">5</span>
+      <div class="pi-hero">π</div>
+      <div class="headline">Find Your Birthday in π</div>
+      <div class="subhead">Every birthday is hiding somewhere in the infinite digits of pi. Let's find yours.</div>
+      <div class="date-input">📅 MM / DD / YYYY</div>
+      <button class="cta-btn">Search π</button>
+    </div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="phase-mock">
+    <div class="phase-label">Phase 2 — Scan Animation</div>
+    <div class="phase-body">
+      <div class="digit-rows">
+        <div class="digit-row">14159265358979323846264338327950288419716939937510</div>
+        <div class="digit-row">58209749445923078164062862089986280348253421170679</div>
+        <div class="digit-row">82148086513282306647093844609550582231725359408128</div>
+        <div class="digit-row">4<span class="highlighted">8111745</span>0284102701938521105559644622948954930381964</div>
+        <div class="digit-row">42881097566593344612847564823378678316527120190914</div>
+        <div class="digit-row">56485669234603486104543266482133936072602491412737</div>
+      </div>
+      <div class="scan-cursor"></div>
+      <div class="progress-bar-wrap">
+        <div class="progress-label">Scanning digit 618,342 of 1,000,000</div>
+        <div class="progress-bar"><div class="progress-fill"></div></div>
+      </div>
+      <div class="trivia-bar">
+        <span class="trivia-pi">π</span>
+        <span class="trivia-text">The Feynman point — six consecutive 9s — begins at position 762 in π.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 3 -->
+  <div class="phase-mock">
+    <div class="phase-label">Phase 3 — Celebration & Result</div>
+    <div class="phase-body">
+      <div class="glass-card">
+        <div class="result-header">
+          <div class="result-pos">Your birthday appears at position <span>47,203</span> in π!</div>
+        </div>
+        <div class="digit-strip">
+          …9327<span class="match">0704</span>1990824…
+        </div>
+        <div style="text-align:center">
+          <span class="badge">🌟 Full Date Match</span>
+        </div>
+        <div class="fun-fact">That's 4.7% of the way through the first million digits!</div>
+        <button class="share-btn">📤 Share Your Pi Position</button>
+        <button class="try-btn">Try Another Birthday</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="subtitle" style="margin-top:20px;text-align:center">Does this overall structure match your vision? Any phases or elements you'd like to change?</p>

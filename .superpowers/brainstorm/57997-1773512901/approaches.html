@@ -1,0 +1,67 @@
+<h2>Three Implementation Decisions</h2>
+<p class="subtitle">The PRD covers most everything. A few architectural choices remain — pick your preference for each.</p>
+
+<div class="section">
+  <h3 style="color:#00d4ff;margin-bottom:4px">1. Pi Digits Source</h3>
+  <p class="subtitle" style="margin-bottom:12px">How should we get the 1M digit file?</p>
+  <div class="options" data-multiselect>
+    <div class="option" data-choice="download-script" onclick="toggleSelect(this)">
+      <div class="letter">A</div>
+      <div class="content">
+        <h3>Node.js download script</h3>
+        <p>Fetch from pi2e.ch at build time, validate first 20 digits, save to <code>public/pi-digits.json</code>. Reliable, ~1MB file. Requires network during setup.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="npm-package" onclick="toggleSelect(this)">
+      <div class="letter">B</div>
+      <div class="content">
+        <h3>Generate via BBP algorithm</h3>
+        <p>Use a pure-JS pi computation library to generate digits locally — no network needed. Slower to generate (~30s) but fully self-contained.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:24px">
+  <h3 style="color:#00d4ff;margin-bottom:4px">2. Digit Stream Animation Engine</h3>
+  <p class="subtitle" style="margin-bottom:12px">How should the scanning animation be driven?</p>
+  <div class="options">
+    <div class="option" data-choice="raf" onclick="toggleSelect(this)">
+      <div class="letter">A</div>
+      <div class="content">
+        <h3><span style="color:#39ff14">✓ Recommended</span> — requestAnimationFrame</h3>
+        <p>Precise 60fps control. Speed ramp logic is straightforward JS. Matches the PRD spec exactly. GPU-accelerated via <code>transform</code> updates.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="css-anim" onclick="toggleSelect(this)">
+      <div class="letter">B</div>
+      <div class="content">
+        <h3>CSS keyframe animations</h3>
+        <p>Simpler code. But harder to control speed ramping dynamically, and near-miss flashes require JS anyway. Not recommended for this use case.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="margin-top:24px">
+  <h3 style="color:#00d4ff;margin-bottom:4px">3. Vercel Deployment</h3>
+  <p class="subtitle" style="margin-bottom:12px">Should deployment be part of this session?</p>
+  <div class="options">
+    <div class="option" data-choice="deploy-yes" onclick="toggleSelect(this)">
+      <div class="letter">A</div>
+      <div class="content">
+        <h3>Yes — build + deploy to Vercel</h3>
+        <p>After <code>npm run build</code> passes, run the Vercel deploy skill. Live URL included in the share button text.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="deploy-no" onclick="toggleSelect(this)">
+      <div class="letter">B</div>
+      <div class="content">
+        <h3>No — local build only</h3>
+        <p>Finish with <code>npm run build && npm start</code>. Deploy separately later. Share button can use a placeholder URL.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top:20px;text-align:center">Click to select, then let me know in the terminal.</p>
