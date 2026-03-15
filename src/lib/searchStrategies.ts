@@ -2,7 +2,6 @@
 
 export type MatchType =
   | 'full-mmddyyyy'
-  | 'full-ddmmyyyy'
   | 'month-day-mmdd'
   | 'month-day-mmddyy'
   | 'partial-md'
@@ -24,13 +23,12 @@ export function getSearchCandidates(date: Date): SearchCandidate[] {
   const yy = yyyy.slice(-2)
 
   const candidates: SearchCandidate[] = [
-    { pattern: mm + dd + yyyy, matchType: 'full-mmddyyyy', label: '🌟 Full Date Match' },
-    { pattern: dd + mm + yyyy, matchType: 'full-ddmmyyyy', label: '🌟 Full Date Match (Intl)' },
-    { pattern: mm + dd,        matchType: 'month-day-mmdd',   label: '🎂 Month+Day Match' },
-    { pattern: mm + dd + yy,   matchType: 'month-day-mmddyy', label: '🎂 Date Match (Short Year)' },
+    { pattern: mm + dd + yyyy, matchType: 'full-mmddyyyy',     label: '🌟 Full Date Match' },
+    { pattern: mm + dd + yy,   matchType: 'month-day-mmddyy',  label: '🎂 Date Match (Short Year)' },
+    { pattern: mm + dd,        matchType: 'month-day-mmdd',    label: '🎂 Month+Day Match' },
   ]
 
-  // Priority 5: unpadded MD — only when both month and day are single digits
+  // Unpadded MD — only when both month and day are single digits
   if (month <= 9 && day <= 9) {
     candidates.push({
       pattern: String(month) + String(day),

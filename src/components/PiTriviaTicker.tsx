@@ -1,7 +1,7 @@
 // src/components/PiTriviaTicker.tsx
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { memo, useEffect, useState, useRef } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
@@ -11,7 +11,7 @@ interface PiTriviaTickerProps {
   active: boolean  // false = fade out
 }
 
-export default function PiTriviaTicker({ active }: PiTriviaTickerProps) {
+export default memo(function PiTriviaTicker({ active }: PiTriviaTickerProps) {
   const [facts] = useState<string[]>(() => shuffleTrivia(PI_TRIVIA))
   const [currentIndex, setCurrentIndex] = useState(0)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
@@ -100,4 +100,4 @@ export default function PiTriviaTicker({ active }: PiTriviaTickerProps) {
       </Box>
     </Box>
   )
-}
+})

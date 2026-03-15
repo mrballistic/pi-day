@@ -4,29 +4,27 @@ import { getSearchCandidates } from '@/lib/searchStrategies'
 describe('getSearchCandidates', () => {
   const july4_1990 = new Date(1990, 6, 4) // month is 0-indexed
 
-  it('returns candidates in priority order', () => {
+  it('returns candidates in priority order (MMDDYYYY → MMDDYY → MMDD → MD)', () => {
     const candidates = getSearchCandidates(july4_1990)
     expect(candidates[0].pattern).toBe('07041990') // MMDDYYYY
-    expect(candidates[1].pattern).toBe('04071990') // DDMMYYYY
+    expect(candidates[1].pattern).toBe('070490')   // MMDDYY
     expect(candidates[2].pattern).toBe('0704')     // MMDD
-    expect(candidates[3].pattern).toBe('070490')   // MMDDYY
-    expect(candidates[4].pattern).toBe('74')       // MD (single digits)
+    expect(candidates[3].pattern).toBe('74')       // MD (single digits)
   })
 
   it('includes correct match type labels', () => {
     const candidates = getSearchCandidates(july4_1990)
     expect(candidates[0].matchType).toBe('full-mmddyyyy')
-    expect(candidates[1].matchType).toBe('full-ddmmyyyy')
+    expect(candidates[1].matchType).toBe('month-day-mmddyy')
     expect(candidates[2].matchType).toBe('month-day-mmdd')
-    expect(candidates[3].matchType).toBe('month-day-mmddyy')
-    expect(candidates[4].matchType).toBe('partial-md')
+    expect(candidates[3].matchType).toBe('partial-md')
   })
 
   it('does NOT include MD partial for double-digit month', () => {
     const oct31 = new Date(2000, 9, 31) // October 31
     const candidates = getSearchCandidates(oct31)
     expect(candidates.some(c => c.matchType === 'partial-md')).toBe(false)
-    expect(candidates[2].pattern).toBe('1031') // MMDD covers it
+    expect(candidates[2].pattern).toBe('1031') // MMDD is index 2
   })
 
   it('does NOT include MD partial for double-digit day', () => {
@@ -39,7 +37,17 @@ describe('getSearchCandidates', () => {
     const jan1 = new Date(2000, 0, 1) // January 1
     const candidates = getSearchCandidates(jan1)
     expect(candidates[0].pattern).toBe('01012000') // MMDDYYYY
+    expect(candidates[1].pattern).toBe('010100')   // MMDDYY
     expect(candidates[2].pattern).toBe('0101')     // MMDD
-    expect(candidates[4].pattern).toBe('11')       // MD (both single digit)
+    expect(candidates[3].pattern).toBe('11')       // MD (both single digit)
+  })
+
+  it('handles December 31 correctly', () => {
+    const dec31 = new Date(1999, 11, 31) // December 31
+    const candidates = getSearchCandidates(dec31)
+    expect(candidates[0].pattern).toBe('12311999')
+    expect(candidates[1].pattern).toBe('123199')
+    expect(candidates[2].pattern).toBe('1231')
+    expect(candidates.some(c => c.matchType === 'partial-md')).toBe(false)
   })
 })

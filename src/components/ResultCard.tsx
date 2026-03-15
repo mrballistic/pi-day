@@ -67,7 +67,7 @@ export default function ResultCard({ result, piDigits, onReset }: ResultCardProp
 
   // Badge color per match type
   const badgeColor =
-    result.matchType === 'full-mmddyyyy' || result.matchType === 'full-ddmmyyyy'
+    result.matchType === 'full-mmddyyyy'
       ? { bg: 'rgba(255,215,0,0.15)', border: 'rgba(255,215,0,0.4)', color: '#ffd700' }
       : result.matchType === 'month-day-mmdd' || result.matchType === 'month-day-mmddyy'
       ? { bg: 'rgba(0,212,255,0.15)', border: 'rgba(0,212,255,0.4)', color: '#00d4ff' }

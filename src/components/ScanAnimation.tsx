@@ -107,6 +107,7 @@ export default function ScanAnimation({
             backgroundColor: 'rgba(255,255,255,0.1)',
             '& .MuiLinearProgress-bar': {
               background: 'linear-gradient(90deg, var(--neon-blue), var(--neon-purple))',
+              transition: 'none',  // RAF drives updates at 60fps; CSS transition on top causes jitter
             },
           }}
         />
