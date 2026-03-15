@@ -20,6 +20,7 @@ const eslintConfig = defineConfig([
     "run-tests.sh",
     "do-work.sh",
     "scripts/**",
+    "jest.config.js",
   ]),
 ]);
 
