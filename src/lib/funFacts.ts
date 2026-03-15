@@ -8,7 +8,7 @@ export function getFunFact(position: number): string {
     return "That's in the first 1% of π — your birthday is practically at the start!"
   }
   if (position <= 50_000) {
-    const pct = Math.round((position / 1_000_000) * 100 * 10) / 10
+    const pct = ((position / 1_000_000) * 100).toFixed(1)
     return `That's ${pct}% of the way through the first million digits.`
   }
   if (position <= 200_000) {
