@@ -66,7 +66,10 @@ export function useScanAnimation({
   const rafRef = useRef<number | null>(null)
   const completedRef = useRef(false)
   const onCompleteRef = useRef(onComplete)
-  onCompleteRef.current = onComplete
+
+  useEffect(() => {
+    onCompleteRef.current = onComplete
+  })
 
   const checkNearMiss = useCallback((position: number): NearMiss | null => {
     for (const candidate of searchCandidates) {

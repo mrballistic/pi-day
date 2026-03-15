@@ -12,14 +12,10 @@ interface PiTriviaTickerProps {
 }
 
 export default function PiTriviaTicker({ active }: PiTriviaTickerProps) {
-  const [facts, setFacts] = useState<string[]>([])
+  const [facts] = useState<string[]>(() => shuffleTrivia(PI_TRIVIA))
   const [currentIndex, setCurrentIndex] = useState(0)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const prefersReducedMotion = useReducedMotion()
-
-  useEffect(() => {
-    setFacts(shuffleTrivia(PI_TRIVIA))
-  }, [])
 
   useEffect(() => {
     if (!active || facts.length === 0) return

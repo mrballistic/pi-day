@@ -12,6 +12,14 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Utility/helper scripts — not part of the Next.js app bundle
+    "run-all.js",
+    "run-all.mjs",
+    "run-git.sh",
+    "run-jest.sh",
+    "run-tests.sh",
+    "do-work.sh",
+    "scripts/**",
   ]),
 ]);
 
