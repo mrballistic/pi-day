@@ -4,6 +4,8 @@ A flashy single-page app that finds your birthday in the digits of π, with a dr
 
 Enter your birthday, watch a sci-fi digit scan through 1 million digits of pi, and discover exactly where your birthday hides.
 
+**[Try it live →](https://pi-day-seven.vercel.app)**
+
 ## Features
 
 - Searches 1,000,000 digits of π for your birthday
@@ -18,7 +20,7 @@ Enter your birthday, watch a sci-fi digit scan through 1 million digits of pi, a
 ## Stack
 
 - [Next.js 16](https://nextjs.org) (App Router, TypeScript)
-- [MUI v5](https://mui.com) + Emotion
+- [MUI v7](https://mui.com) + Emotion
 - [Framer Motion](https://www.framer.com/motion/)
 - [canvas-confetti](https://github.com/catdad/canvas-confetti)
 - [date-fns](https://date-fns.org)
@@ -31,17 +33,7 @@ Enter your birthday, watch a sci-fi digit scan through 1 million digits of pi, a
 npm install
 ```
 
-### 2. Download pi digits
-
-The app requires a 1-million-digit pi data file (not committed to the repo):
-
-```bash
-node scripts/download-pi.js
-```
-
-This downloads `public/pi-digits.json` from a reliable static source. If the network is unavailable, manually create the file in the format `{"digits":"14159265..."}` (1,000,000 digits after the decimal point).
-
-### 3. Run the dev server
+### 2. Run the dev server
 
 ```bash
 npm run dev
@@ -49,7 +41,7 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-### 4. Build for production
+### 3. Build for production
 
 ```bash
 npm run build
