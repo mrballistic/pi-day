@@ -1,0 +1,65 @@
+:root {
+  --bg-primary: #0a0a1a;
+  --bg-secondary: #1a1a2e;
+  --bg-tertiary: #16213e;
+  --neon-blue: #00d4ff;
+  --neon-purple: #b24bff;
+  --neon-pink: #ff2d95;
+  --neon-green: #39ff14;
+  --gold: #ffd700;
+  --text-primary: #ffffff;
+  --text-muted: #8892b0;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+@keyframes piGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 20px rgba(0, 212, 255, 0.8),
+      0 0 40px rgba(0, 212, 255, 0.4),
+      0 0 80px rgba(0, 212, 255, 0.2);
+    color: var(--neon-blue);
+  }
+  33% {
+    text-shadow:
+      0 0 20px rgba(178, 75, 255, 0.8),
+      0 0 40px rgba(178, 75, 255, 0.4),
+      0 0 80px rgba(178, 75, 255, 0.2);
+    color: var(--neon-purple);
+  }
+  66% {
+    text-shadow:
+      0 0 20px rgba(255, 45, 149, 0.8),
+      0 0 40px rgba(255, 45, 149, 0.4),
+      0 0 80px rgba(255, 45, 149, 0.2);
+    color: var(--neon-pink);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.04; }
+  25% { transform: translateY(-20px) rotate(5deg); opacity: 0.07; }
+  50% { transform: translateY(-10px) rotate(-3deg); opacity: 0.05; }
+  75% { transform: translateY(-30px) rotate(8deg); opacity: 0.06; }
+}
+
+@keyframes digitFlash {
+  0%, 100% { color: #ffffff; transform: scale(1); text-shadow: none; }
+  50% { color: var(--gold); transform: scale(2); text-shadow: 0 0 20px var(--gold); }
+}
+
+@keyframes scanPulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 20px cyan, 0 0 40px rgba(0, 255, 255, 0.4); }
+  50% { opacity: 0.7; box-shadow: 0 0 10px cyan; }
+}
