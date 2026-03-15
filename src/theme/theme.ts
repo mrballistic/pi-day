@@ -61,19 +61,5 @@ export const theme = createTheme({
         },
       },
     },
-    MuiPickersDay: {
-      styleOverrides: {
-        root: {
-          color: '#ffffff',
-          '&.Mui-selected': {
-            backgroundColor: '#00d4ff',
-            color: '#000000',
-          },
-          '&:hover': {
-            backgroundColor: 'rgba(0, 212, 255, 0.2)',
-          },
-        },
-      },
-    },
   },
 })
