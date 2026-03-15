@@ -29,10 +29,5 @@ jobs:
       - name: Test
         run: npm test -- --no-coverage --ci
 
-      - name: Download pi digits
-        run: node scripts/download-pi.js
-
       - name: Build
         run: npm run build
-        # prebuild also calls download-pi.js but skips since the file
-        # already exists from the step above
