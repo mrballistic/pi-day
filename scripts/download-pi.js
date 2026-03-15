@@ -27,6 +27,19 @@ function fetchUrl(url) {
 }
 
 async function main() {
+  // Skip download if the file already exists and is valid (speeds up incremental Vercel builds)
+  if (fs.existsSync(OUTPUT_PATH)) {
+    try {
+      const existing = JSON.parse(fs.readFileSync(OUTPUT_PATH, 'utf8'))
+      if (typeof existing.digits === 'string' && existing.digits.length === DIGITS_NEEDED && existing.digits.startsWith(KNOWN_PREFIX)) {
+        console.log(`✓ pi-digits.json already present (${existing.digits.length} digits) — skipping download`)
+        return
+      }
+    } catch {
+      // File exists but is corrupt — fall through and re-download
+    }
+  }
+
   console.log('Downloading pi digits...')
   let raw
   try {
