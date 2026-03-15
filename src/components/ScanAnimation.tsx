@@ -5,6 +5,7 @@ import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import LinearProgress from '@mui/material/LinearProgress'
 import { useTheme, useMediaQuery } from '@mui/material'
+import { useMemo } from 'react'
 import DigitStream from './DigitStream'
 import PiTriviaTicker from './PiTriviaTicker'
 import type { PiSearchResult } from '@/hooks/usePiSearch'
@@ -31,7 +32,7 @@ export default function ScanAnimation({
   const rowCount = isMobile ? 3 : isTablet ? 5 : 7
   const matchIndex0 = searchResult.position - 1  // 0-based
 
-  const searchCandidates = getSearchCandidates(birthday)
+  const searchCandidates = useMemo(() => getSearchCandidates(birthday), [birthday])
 
   const { visualPosition, animPhase, progress, nearMiss } = useScanAnimation({
     matchIndex: matchIndex0,
